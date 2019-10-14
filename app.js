@@ -16,6 +16,7 @@ function Product(name) {
   this.votes = 0;
   allProducts.push(this);
 }
+
 function makeRandom() {
   return Math.floor(Math.random() * allProducts.length);
 }
@@ -75,26 +76,52 @@ new Product('unicorn');
 new Product('usb');
 new Product('water-can');
 new Product('wine-glass');
+
+/////////////////////////////////////////////
+//   for (var i = 0; i < hours.length; i++) {
+//     tableHeader = document.createElement('th');
+//     tableHeader.textContent = hours[i];
+//     tableRow.appendChild(tableHeader);
+//     tableData.appendChild(tableRow);
+//   }
+//   tableData = document.getElementById('tableData');
+//   tableHeader = document.createElement('th');
+//   tableHeader.textContent = 'Location Total';
+//   tableRow.appendChild(tableHeader);
+//   tableData.appendChild(tableRow);
+// }
+/////////////////////////////////////////////
+
 /////////////////////////////////////
 function handleClick(event) {
   var chosenImage = event.target.title;
-  console.log('chosenImage: ', chosenImage);
+  // console.log('chosenImage: ', chosenImage);
   for (var i = 0; i < allProducts.length; i++) {
+
+    // console.log('all products[i]', allProducts[i].name);
+
     if (allProducts[i].name === chosenImage) {
+      // console.log('match found');
+      // console.log('chosen image', chosenImage);
+
       allProducts[i].votes++;
+      // Product.totalClicks++;
     }
+    // console.log('Product.totalClicks', Product.totalClicks);
 
     //LIMIT ALLOWABLE CLICKS
-    
-    if (Product.totalClicks === 5) {
-      Product.containerEl.removeEventListener('click', handleClick);
-      Product.containerEl.setAttribute('hidden', true);
+
+    if (Product.totalClicks === 4) {
+      containerEl.removeEventListener('click', handleClick);
+      leftImageEl.setAttribute('hidden', true);
+      centerImageEl.setAttribute('hidden', true);
+      rightImageEl.setAttribute('hidden', true);
     }
+
   }
   Product.totalClicks++;
   renderProducts();
 }
 
 containerEl.addEventListener('click', handleClick);
-
 renderProducts();
