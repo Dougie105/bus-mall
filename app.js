@@ -77,20 +77,17 @@ new Product('usb');
 new Product('water-can');
 new Product('wine-glass');
 
-/////////////////////////////////////////////
-//   for (var i = 0; i < hours.length; i++) {
-//     tableHeader = document.createElement('th');
-//     tableHeader.textContent = hours[i];
-//     tableRow.appendChild(tableHeader);
-//     tableData.appendChild(tableRow);
-//   }
-//   tableData = document.getElementById('tableData');
-//   tableHeader = document.createElement('th');
-//   tableHeader.textContent = 'Location Total';
-//   tableRow.appendChild(tableHeader);
-//   tableData.appendChild(tableRow);
-// }
-/////////////////////////////////////////////
+/////////////////////////////////////
+
+var renderTable = function(){
+  var ulElement = document.getElementById('tally');
+  ulElement.textContent = '';
+  for(var i = 0; i < allProducts.length; i++){
+    var listElement = document.createElement('li');
+    listElement.textContent = `${allProducts[i].name} has ${allProducts[i].views} views and ${allProducts[i].votes} votes`;
+    ulElement.appendChild(listElement);
+  }
+};
 
 /////////////////////////////////////
 function handleClick(event) {
@@ -110,14 +107,16 @@ function handleClick(event) {
     // console.log('Product.totalClicks', Product.totalClicks);
 
     //LIMIT ALLOWABLE CLICKS
-
+    //This calls render 20 times.
     if (Product.totalClicks === 4) {
+      console.log(Product.totalClicks);
+      console.log('inside if statement');
       containerEl.removeEventListener('click', handleClick);
       leftImageEl.setAttribute('hidden', true);
       centerImageEl.setAttribute('hidden', true);
       rightImageEl.setAttribute('hidden', true);
+      renderTable();
     }
-
   }
   Product.totalClicks++;
   renderProducts();
@@ -125,3 +124,4 @@ function handleClick(event) {
 
 containerEl.addEventListener('click', handleClick);
 renderProducts();
+

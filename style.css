@@ -26,3 +26,13 @@ body{
   border: 3px black dashed;
   border-radius: 90%;
 }
+
+ul{
+  display: inline-block;
+}
+
+li{
+  display: inline-block;
+  border: 3px black solid;
+  padding: 5px;
+}
