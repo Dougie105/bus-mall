@@ -108,7 +108,7 @@ function handleClick(event) {
 
     //LIMIT ALLOWABLE CLICKS
     //This calls render 20 times.
-    if (Product.totalClicks === 4) {
+    if (Product.totalClicks === 24) {
       console.log(Product.totalClicks);
       console.log('inside if statement');
       containerEl.removeEventListener('click', handleClick);
