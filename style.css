@@ -27,6 +27,10 @@ body{
   border-radius: 90%;
 }
 
+#center:hover{
+  border: 3px solid darkorange;
+}
+
 ul{
   display: inline-block;
 }
