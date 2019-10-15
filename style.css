@@ -1,0 +1,38 @@
+body{
+  width: 960px;
+}
+
+#image_container{
+  display: inline;
+}
+
+#left{
+  width: 300px;
+  height: 300px;
+  border: 3px black dotted;
+  border-radius: 90%;
+}
+#right{
+  width: 300px;
+  height: 300px;
+  border: 3px black solid;
+  border-radius: 90%;
+}
+#center{
+  width: 300px;
+  height: 300px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 3px black dashed;
+  border-radius: 90%;
+}
+
+ul{
+  display: inline-block;
+}
+
+li{
+  display: inline-block;
+  border: 3px black solid;
+  padding: 5px;
+}
