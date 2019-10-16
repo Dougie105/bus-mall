@@ -3,7 +3,6 @@
 var allProducts = [];
 Product.uniqueArray = [];
 
-
 var leftImageEl = document.getElementById('left');
 var centerImageEl = document.getElementById('center');
 var rightImageEl = document.getElementById('right');
@@ -16,8 +15,6 @@ Product.pics = [
 ];
 Product.totalClicks = 0;
 
-
-
 function Product(name) {
   this.name = name;
   this.path = `img/${name}.jpg`;
@@ -26,24 +23,23 @@ function Product(name) {
   allProducts.push(this);
 }
 
-
 function makeRandom() {
   return Math.floor(Math.random() * allProducts.length);
 }
 
 /////////////////////////////////////////////////////////////////// keep array full of 6 unique values
 
-function uniqueArrayGen(){
-  while(Product.uniqueArray.length < 6){
+function uniqueArrayGen() {
+  while (Product.uniqueArray.length < 6) {
     var random = makeRandom();
-    while(!Product.uniqueArray.includes(random)){
+    while (!Product.uniqueArray.includes(random)) {
       Product.uniqueArray.push(random);
     }
   }
 }
 function displayPics() {
   uniqueArrayGen();
-  for( var i = 0; i < Product.uniqueArray.length; i++){
+  for (var i = 0; i < Product.uniqueArray.length; i++) {
     //value of the first index of the array is removed and set as the variable 'temp' and replaced at each iteration of the loop
     var temp = Product.uniqueArray.shift();
     console.log('The Temp is #: ', temp);
@@ -64,6 +60,7 @@ function handleClick(event) {
     centerImageEl.setAttribute('hidden', true);
     rightImageEl.setAttribute('hidden', true);
     chartMaker();
+    storeData();
   }
   for (var i = 0; i < allProducts.length; i++) {
     if (allProducts[i].name === chosenImage) {
@@ -196,3 +193,19 @@ var chartMaker = function () {
 containerEl.addEventListener('click', handleClick);
 renderProducts();
 displayPics();
+
+///////////////////////////JSON Local Storage
+
+function storeData(){
+//stringify the data
+  var allProductsStringified = JSON.stringify(allProducts);
+  //storing data into local storage
+  localStorage.setItem('data', allProductsStringified);
+  //getting data from local storage
+  var storageAllProducts = localStorage.getItem('data');
+  //parsing storageAllProducts
+  var parsedallProducts = JSON.parse(storageAllProducts);
+  for (var i = 0; i < parsedallProducts.length; i++) {
+    new Product(parsedallProducts[i].nameData, parsedallProducts[i].voteData);
+  }
+}

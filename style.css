@@ -7,19 +7,16 @@ body{
 }
 
 #left{
-  width: 300px;
   height: 300px;
   border: 3px black dotted;
   border-radius: 90%;
 }
 #right{
-  width: 300px;
   height: 300px;
   border: 3px black solid;
   border-radius: 90%;
 }
 #center{
-  width: 300px;
   height: 300px;
   margin-left: 10px;
   margin-right: 10px;
