@@ -3,6 +3,7 @@
 var allProducts = [];
 Product.uniqueArray = [];
 
+
 var leftImageEl = document.getElementById('left');
 var centerImageEl = document.getElementById('center');
 var rightImageEl = document.getElementById('right');
@@ -30,31 +31,30 @@ function makeRandom() {
   return Math.floor(Math.random() * allProducts.length);
 }
 
-//////// keep array full of 6 unique values
+/////////////////////////////////////////////////////////////////// keep array full of 6 unique values
 
 function uniqueArrayGen(){
-  while(allProducts.uniqueArray.length < 6){
+  while(Product.uniqueArray.length < 6){
     var random = makeRandom();
-    while(!allProducts.uniqueArray.includes(random)){
-      allProducts.uniqueArray.push(random);
+    while(!Product.uniqueArray.includes(random)){
+      Product.uniqueArray.push(random);
     }
   }
 }
 function displayPics() {
   uniqueArrayGen();
-  for( var i = 0; i < allProducts.uniqueArray.length; i++){
+  for( var i = 0; i < Product.uniqueArray.length; i++){
     //value of the first index of the array is removed and set as the variable 'temp' and replaced at each iteration of the loop
-    var temp = allProducts.uniqueArray.shift();
+    var temp = Product.uniqueArray.shift();
     console.log('The Temp is #: ', temp);
     //sets the id of the product at the current index
-    allProducts.pics[i].src = allProducts[temp].path;
+    Product.pics[i].src = allProducts[temp].path;
     //sets the id of the product at the current index
-    allProducts.pics[i].id = allProducts[temp].name;
+    Product.pics[i].id = allProducts[temp].name;
     allProducts[temp].views += 1;
   }
 }
-//////////////////////////////////////////////////
-//Limits to 5 clicks
+///////////////////////////////////////////////////Limits to 5 clicks
 
 function handleClick(event) {
   var chosenImage = event.target.title;
@@ -72,18 +72,19 @@ function handleClick(event) {
   }
   Product.totalClicks++;
   renderProducts();
+  displayPics();
 }
 
 function renderProducts() {
   //create to hold unique index
   var uniquePicsArray = [];
-  //assigning a random number to the picture arrays
+  // assigning a random number to the picture arrays
   uniquePicsArray[0] = makeRandom();
   uniquePicsArray[1] = makeRandom();
   uniquePicsArray[2] = makeRandom();
   //make sure that there are no duplicates in the pictures shown.
   while (uniquePicsArray[0] === uniquePicsArray[1] || uniquePicsArray[1] === uniquePicsArray[2] || uniquePicsArray[0] === uniquePicsArray[2]) {
-    console.log('Duplicate found! Getting new image');
+    // console.log('Duplicate found! Getting new image');
     uniquePicsArray[0] = makeRandom();
     uniquePicsArray[1] = makeRandom();
     uniquePicsArray[2] = makeRandom();
@@ -104,6 +105,7 @@ function renderProducts() {
   rightImageEl.title = allProducts[uniquePicsArray[2]].name;
   rightImageEl.name = allProducts[uniquePicsArray[2]].name;
 }
+
 new Product('bag');
 new Product('boots');
 new Product('banana');
@@ -191,6 +193,6 @@ var chartMaker = function () {
   });
 };
 
-
 containerEl.addEventListener('click', handleClick);
 renderProducts();
+displayPics();
