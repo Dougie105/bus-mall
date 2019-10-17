@@ -59,8 +59,13 @@ function handleClick(event) {
     leftImageEl.setAttribute('hidden', true);
     centerImageEl.setAttribute('hidden', true);
     rightImageEl.setAttribute('hidden', true);
+    localStorage.setItem('data', ('allProducts'));
+    ////////////////////////////////////////////////////////////
+    //stringify the data
+    // var allProductsStringified = JSON.stringify(allProducts);
+//storing data into local storage
+    localStorage.setItem('data', JSON.stringify(allProducts));
     chartMaker();
-    storeData();
   }
   for (var i = 0; i < allProducts.length; i++) {
     if (allProducts[i].name === chosenImage) {
@@ -103,26 +108,40 @@ function renderProducts() {
   rightImageEl.name = allProducts[uniquePicsArray[2]].name;
 }
 
-new Product('bag');
-new Product('boots');
-new Product('banana');
-new Product('bathroom');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
-new Product('dragon');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('sweep');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('usb');
-new Product('water-can');
-new Product('wine-glass');
+if(localStorage.data){
+  //getting data from local storage
+  var storageAllProducts = localStorage.getItem('data');
+  //parsing storageAllProducts
+  var parsedallProducts = JSON.parse(storageAllProducts);
+  for (var i = 0; i < parsedallProducts.length; i++) {
+    var newProduct = new Product(parsedallProducts[i].name);
+    newProduct.views = parsedallProducts[i].views;
+    newProduct.votes = parsedallProducts[i].votes;
+  }
+}else{
+  new Product('bag');
+  new Product('boots');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+  new Product('dragon');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('sweep');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('usb');
+  new Product('water-can');
+  new Product('wine-glass');
+}
+
+
 
 //renders a list function
 // var renderTable = function () {
@@ -138,9 +157,7 @@ new Product('wine-glass');
 
 //Create the chart here
 Product.nameData = [];
-console.log('name: ', Product.nameData);
 Product.voteData = [];
-console.log('vote: ', Product.voteData);
 
 var getChartData = function () {
   for (var i = 0; i < allProducts.length; i++) {
@@ -196,16 +213,10 @@ displayPics();
 
 ///////////////////////////JSON Local Storage
 
-function storeData(){
-//stringify the data
-  var allProductsStringified = JSON.stringify(allProducts);
-  //storing data into local storage
-  localStorage.setItem('data', allProductsStringified);
-  //getting data from local storage
-  var storageAllProducts = localStorage.getItem('data');
-  //parsing storageAllProducts
-  var parsedallProducts = JSON.parse(storageAllProducts);
-  for (var i = 0; i < parsedallProducts.length; i++) {
-    new Product(parsedallProducts[i].nameData, parsedallProducts[i].voteData);
-  }
-}
+
+
+
+
+
+
+
