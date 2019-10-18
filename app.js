@@ -63,7 +63,7 @@ function handleClick(event) {
     ////////////////////////////////////////////////////////////
     //stringify the data
     // var allProductsStringified = JSON.stringify(allProducts);
-//storing data into local storage
+    //storing data into local storage
     localStorage.setItem('data', JSON.stringify(allProducts));
     chartMaker();
   }
@@ -108,7 +108,7 @@ function renderProducts() {
   rightImageEl.name = allProducts[uniquePicsArray[2]].name;
 }
 
-if(localStorage.data){
+if (localStorage.data) {
   //getting data from local storage
   var storageAllProducts = localStorage.getItem('data');
   //parsing storageAllProducts
@@ -118,7 +118,7 @@ if(localStorage.data){
     newProduct.views = parsedallProducts[i].views;
     newProduct.votes = parsedallProducts[i].votes;
   }
-}else{
+} else {
   new Product('bag');
   new Product('boots');
   new Product('banana');

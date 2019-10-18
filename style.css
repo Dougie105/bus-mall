@@ -1,5 +1,6 @@
 body{
   width: 960px;
+  background-color: azure
 }
 
 #image_container{
@@ -8,16 +9,21 @@ body{
 
 #left{
   height: 300px;
+  width: 300px;
   border: 3px black dotted;
   border-radius: 90%;
 }
+
 #right{
   height: 300px;
+  width: 300px;
   border: 3px black solid;
   border-radius: 90%;
 }
+
 #center{
   height: 300px;
+  width: 300px;
   margin-left: 10px;
   margin-right: 10px;
   border: 3px black dashed;
@@ -28,7 +34,7 @@ body{
   border: 3px solid darkorange;
 }
 
-ul{
+/* ul{
   display: inline-block;
 }
 
@@ -36,4 +42,4 @@ li{
   display: inline-block;
   border: 3px black solid;
   padding: 5px;
-}
+} */
