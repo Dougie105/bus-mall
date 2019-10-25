@@ -54,7 +54,7 @@ function displayPics() {
 
 function handleClick(event) {
   var chosenImage = event.target.title;
-  if (Product.totalClicks === 0) {
+  if (Product.totalClicks === 24) {
     containerEl.removeEventListener('click', handleClick);
     leftImageEl.setAttribute('hidden', true);
     centerImageEl.setAttribute('hidden', true);
